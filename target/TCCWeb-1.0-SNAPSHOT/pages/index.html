@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link href="../resources/css/lib/materialize.min.css" rel="stylesheet">
+        <link href="../resources/css/lib/materialIcons.css" rel="stylesheet">
+        
+        <link href="../resources/css/tcc/main.css" rel="stylesheet">
+        
+        <script src="../resources/js/lib/angular.min.js"></script>
+        <script src="../resources/js/lib/materialize.min.js"></script>
+        
+        <script src="../resources/js/tcc/app.js"></script>
+    </head>
+    <body ng-app='Optimizer'>
+        <div class="container" style="width: 90%" ng-controller="OptimizerController as optim">
+            <!-- <button ng-click="optim.getAll()">Get All</button> -->
+            <div class="row valign-wrapper">
+                
+                <div class="col s3">
+                    <div class="row innerRow z-depth-5">
+                        <h2>Unselected: </h2>
+                        <ul>
+                            <div class="innerUl z-depth-3" ng-if="optim.restaurants.unselected">
+                                <li ng-repeat="restaurant in optim.restaurants.unselected" class="pointer" ng-click="optim.select($index, 'restaurants')">
+                                    <p>&nbsp;[{{ restaurant.shortname }}] {{ restaurant.fullname }} 
+                                        at {{ restaurant.latitude }} / {{ restaurant.longitude }}</p>
+                                </li>
+                            </div>
+                            <div class="innerUl z-depth-3" ng-if="optim.banks.unselected">
+                                <li ng-repeat="bank in optim.banks.unselected" class="pointer" ng-click="optim.select($index, 'banks')">
+                                    <p>&nbsp;[{{ bank.shortname }}] {{ bank.fullname }} 
+                                        at {{ bank.latitude }} / {{ bank.longitude }}</p>
+                                </li>
+                            </div>
+                            <div class="innerUl z-depth-3" ng-if="optim.groceries.unselected">
+                                <li ng-repeat="grocery in optim.groceries.unselected" class="pointer" ng-click="optim.select($index, 'groceries')">
+                                    <p>&nbsp;[{{ grocery.shortname }}] {{ grocery.fullname }} 
+                                        at {{ grocery.latitude }} / {{ grocery.longitude }}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col s1 center-align">
+                    <button class="btn waves-effect waves-light width100" style="padding: 0" ng-click="optim.selectAll()">>></button>
+                    <span>&nbsp;</span>
+                    <button class="btn waves-effect waves-light width100" style="padding: 0" ng-click="optim.unselectAll()"><<</button>
+                </div>
+                
+                <div class="col s3">
+                    <div class="row innerRow z-depth-5">
+                        <h2>Selected: </h2>
+                        <ul>
+                            <div class="innerUl z-depth-3" ng-if="optim.restaurants.selected">
+                                <li ng-repeat="restaurant in optim.restaurants.selected" class="pointer" ng-click="optim.unselect($index, 'restaurants')">
+                                    <p>&nbsp;[{{ restaurant.shortname }}] {{ restaurant.fullname }} 
+                                        at {{ restaurant.latitude }} / {{ restaurant.longitude }}</p>
+                                </li>
+                            </div>
+                            <div class="innerUl z-depth-3" ng-if="optim.banks.selected">
+                                <li ng-repeat="bank in optim.banks.selected" class="pointer" ng-click="optim.unselect($index, 'banks')">
+                                    <p>&nbsp;[{{ bank.shortname }}] {{ bank.fullname }} 
+                                        at {{ bank.latitude }} / {{ bank.longitude }}</p>
+                                </li>
+                            </div>
+                            <div class="innerUl z-depth-3" ng-if="optim.groceries.selected">
+                                <li ng-repeat="grocery in optim.groceries.selected" class="pointer" ng-click="optim.unselect($index, 'groceries')">
+                                    <p>&nbsp;[{{ grocery.shortname }}] {{ grocery.fullname }} 
+                                        at {{ grocery.latitude }} / {{ grocery.longitude }}</p>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                    
+                    <button class="btn waves-effect waves-light width100" ng-click="optim.sendReq()">Send
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+                
+                <div class="col s1">
+                </div>
+                
+                <div class="col s3">
+                    
+                    <div class="row innerRow z-depth-5">
+                        <h2>Optimized: </h2>
+                        <ol>
+                            <div class="" ng-if="optim.optimized">
+                                <li ng-repeat="restaurant in optim.optimized">
+                                    <p>&nbsp;{{ restaurant.fullname }}</p>
+                                </li>
+                            </div>
+                        </ol>
+                    </div>
+                    
+                    
+                    <button class="btn waves-effect waves-light width100" ng-click="optim.clearOptimized()">Clear
+                        <i class="material-icons right">clear</i>
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </body>
+</html>
